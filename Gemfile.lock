@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    perftools.rb (2.0.1)
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
+    tins (0.8.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  perftools.rb
+  term-ansicolor

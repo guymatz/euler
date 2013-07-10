@@ -7,11 +7,10 @@
 #
 # What is the largest prime factor of the number 600851475143 ?
 
-num = ARGV[0]
-
 def list_of_primes num_to_check
   orig_num = num_to_check.to_i
-  num_to_check = Math.sqrt(num_to_check.to_i).floor
+  num_to_check = (num_to_check.to_i / 2).floor
+  #num_to_check = Math.sqrt(num_to_check.to_i).floor
   puts "Checking up to #{num_to_check}"
   a = ['x','x']
   return_list = []
@@ -22,7 +21,7 @@ def list_of_primes num_to_check
       break if i * j > num_to_check
       a[i * j] = 'x'
     end
-    puts "At #{j}, array has #{a.size} elements"
+    #puts "At #{j}, array has #{a.size} elements"
   end
 
   a.each_with_index do |n,i|
@@ -33,16 +32,16 @@ def list_of_primes num_to_check
   end
 
   return_list
-
 end
 
-primes = list_of_primes(num)
+if __FILE__ == $0
 
-primes.reverse.each do |p|
-  mod = num.to_i % p.to_i
-  if mod == 0
-    puts p
-    break
+  num = ARGV[0].to_i
+  
+  primes = list_of_primes(num)
+  
+  primes.each do |p|
+    printf "%i ", p if ( num % p.to_i == 0 )
   end
 end
 # vim: ai ts=2 sts=2 et sw=2 ft=ruby
