@@ -51,71 +51,15 @@ class Grid
     puts "Max = #{@max_num}"
   end
   
-  def mult_down row, col
-    total = 1
-    row.upto(row + 3) do |n|
-      #print "#{@matrix[n][col]} "
-      total *= @matrix[n][col].to_i
-    end
-    puts
-    new_max? total 
-  end
-  
-  def mult_up row, col
-    total = 1
-    row.downto(row - 3) do |n|
-      #print "#{@matrix[n][col]} "
-      total *= @matrix[n][col].to_i
-    end
-    new_max? total 
-  end
-  
-  def mult_right row, col
-    total = 1
-    col.upto(col + 3) do |n|
-      #print "#{@matrix[row][n]} "
-      total *= @matrix[row][n].to_i
-    end
-    new_max? total 
-  end
-  
-  def mult_left row, col
-    total = 1
-    col.upto(col + 3) do |n|
-      #print "#{@matrix[row][n]} "
-      total *= @matrix[row][n].to_i
-    end
-    new_max? total 
-  end
-  
-  def mult_diag_up_left row, col
-    total = 1
-    0.upto(3) do |n|
-      #print "#{@matrix[row - n][col - n]} "
-      total *= @matrix[row - n][col - n].to_i
-    end
-    new_max? total 
-  end
-  
-  def mult_diag_up_right row, col
-    total = 1
-    0.upto(3) do |n|
-      #print "#{@matrix[row + n][col - n]} "
-      total *= @matrix[row + n][col - n].to_i
-    end
-    new_max? total 
-  end
-   
-  def mult_diag_down_right row, col
-    total = 1
-    0.upto(3) do |n|
-      #print "#{@matrix[row + n][col + n]} "
-      total *= @matrix[row + n][col + n].to_i
-    end
-    new_max? total 
-  end
-  
-  def mult_diag_down_left row, col
+  def method_missing(name, *args)
+    puts "Trying to run #{name} with #{args}"
+    row, col = args
+    Kernel.method_missing(name, *args) unless name =~ /\Amult_(diag_)?(up|down|left|right)/
+    row_mult = 1 if name =~ /.*down.*/
+    row_mult = -1 if name =~ /.*up.*/
+    col_mult = 1 if name =~ /.*right.*/
+    col_mult = -1 if name =~ /.*left.*/
+
     total = 1
     0.upto(3) do |n|
       #print "#{@matrix[row - n][col + n]} "
@@ -124,7 +68,6 @@ class Grid
     new_max? total 
   end
 
-  
   def loop_through_grid
     
     row_ctr = 0
