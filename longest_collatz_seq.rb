@@ -45,6 +45,6 @@ end
     max_chain = chain
   end
 #  puts "n = #{n}, max_chain_start = #{max_chain_start}, ctr = #{max_chain}"
-end
+##@#end
 
 puts max_chain
