@@ -7,7 +7,8 @@ namespace :validate do
   desc 'validate syntax'
 
   task :ruby do
-    puts "INTRUDER ALERT!!  INTRUDER ALERT!!"
+    r = `which ruby`
+    puts "INTRUDER ALERT!!  INTRUDER ALERT!! Ruby is in #{r}"
     Dir['*.rb'].each do |file|
       Open3.popen3("ruby -Ku -c #{file}") do |stdin, stdout, stderr|
         if error = ((stderr.readline rescue false))
