@@ -9,8 +9,9 @@
 
 import math
 
-target_num = 600851475143
 target_num = 13195
+target_num = 600851475143
+ctr = 2
 prime_factors = []
 
 def is_prime(num):
@@ -27,12 +28,13 @@ def is_a_factor(big_num, little_num):
   if big_num % little_num == 0:
     return True
 
-for i in range(3,target_num):
-  if i % 2 == 0:
+while ctr < int(math.floor(target_num/2)):
+  ctr += 1
+  if ctr % 2 == 0:
     continue
-  if not is_a_factor(target_num, i):
+  if not is_a_factor(target_num, ctr):
     continue
-  if (not is_prime(i)):
+  if (not is_prime(ctr)):
     continue
-  prime_factors.append(i)
-  print("%i" % i)
+  prime_factors.append(ctr)
+  print("%i" % ctr)
