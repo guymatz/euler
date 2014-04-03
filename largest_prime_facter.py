@@ -11,7 +11,7 @@ import math
 
 target_num = 13195
 target_num = 600851475143
-ctr = 2
+ctr = 3
 prime_factors = []
 
 def is_prime(num):
@@ -28,10 +28,8 @@ def is_a_factor(big_num, little_num):
   if big_num % little_num == 0:
     return True
 
-while ctr < int(math.floor(target_num/2)):
-  ctr += 1
-  if ctr % 2 == 0:
-    continue
+while ctr < int(math.floor(math.sqrt(target_num))):
+  ctr += 2
   if not is_a_factor(target_num, ctr):
     continue
   if (not is_prime(ctr)):
